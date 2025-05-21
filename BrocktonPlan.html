@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brockton AI Coaching Plan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .tab-button.active { 
+            border-color: #0369a1; /* sky-700 */
+            color: #0369a1; /* sky-700 */
+            font-weight: 600;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .info-card {
+            transition: all 0.3s ease-in-out;
+        }
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .detail-toggle { cursor: pointer; }
+        .detail-content { display: none; }
+        .detail-content.open { display: block; }
+    </style>
+</head>
+<body class="bg-stone-100 text-stone-800">
+
+    <div class="container mx-auto p-4 sm:p-6 md:p-8 max-w-5xl">
+        <header class="mb-8 text-center">
+            <h1 class="text-3xl sm:text-4xl font-bold text-sky-700">Brockton AI Coaching Plan</h1>
+            <p class="text-stone-600 mt-2 text-lg">Interactive Overview of the Fall Implementation Strategy</p>
+        </header>
+
+        <div class="mb-8 border-b border-stone-300">
+            <nav class="flex flex-wrap -mb-px" aria-label="Tabs">
+                <button class="tab-button active text-stone-600 hover:text-sky-700 hover:border-sky-600 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm sm:text-base mr-2 sm:mr-4" data-tab="overview">
+                    <span class="material-icons-outlined mr-1 text-base align-middle"></span> Overview
+                </button>
+                <button class="tab-button text-stone-600 hover:text-sky-700 hover:border-sky-600 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm sm:text-base mr-2 sm:mr-4" data-tab="implementation">
+                    <span class="material-icons-outlined mr-1 text-base align-middle"></span> Implementation
+                </button>
+                <button class="tab-button text-stone-600 hover:text-sky-700 hover:border-sky-600 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm sm:text-base mr-2 sm:mr-4" data-tab="feedback">
+                    <span class="material-icons-outlined mr-1 text-base align-middle"></span> Feedback Focus
+                </button>
+                <button class="tab-button text-stone-600 hover:text-sky-700 hover:border-sky-600 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm sm:text-base mr-2 sm:mr-4" data-tab="data_sharing">
+                    <span class="material-icons-outlined mr-1 text-base align-middle"></span> Data Sharing
+                </button>
+                <button class="tab-button text-stone-600 hover:text-sky-700 hover:border-sky-600 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm sm:text-base" data-tab="next_steps">
+                    <span class="material-icons-outlined mr-1 text-base align-middle"></span> Next Steps
+                </button>
+            </nav>
+        </div>
+
+        <main id="tab-content-area" class="bg-white p-6 sm:p-8 rounded-lg shadow-lg">
+            <div id="overview" class="tab-content active">
+                <h2 class="text-2xl font-semibold text-sky-700 mb-4">Plan Overview</h2>
+                <p class="mb-4 text-stone-700">This section outlines the main objective of the AI Coaching Plan for Brockton. The primary aim is to enhance coaching effectiveness and support teacher development through the strategic use of enhanced audio recordings and AI-powered feedback, ensuring alignment with Brockton's district priorities.</p>
+                <div class="bg-sky-50 border border-sky-200 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold text-sky-800 mb-2">Core Goal</h3>
+                    <p class="text-stone-700">To leverage enhanced audio recordings and AI-powered feedback to improve coaching effectiveness and support teacher development in Brockton, aligning with district priorities.</p>
+                </div>
+                 <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="info-card bg-stone-50 p-6 rounded-lg shadow">
+                        <h4 class="text-lg font-semibold text-emerald-700 mb-2">Key Stakeholders</h4>
+                        <ul class="list-disc list-inside text-stone-700 space-y-1">
+                            <li>Steven Mendoza</li>
+                            <li>Sue Hamilton</li>
+                            <li>Math/Instructional Support Providers (MSPs)</li>
+                            <li>Teachers</li>
+                            <li>Abby (Research Contact)</li>
+                            <li>Candy</li>
+                            <li>School Administrators</li>
+                        </ul>
+                    </div>
+                    <div class="info-card bg-stone-50 p-6 rounded-lg shadow">
+                        <h4 class="text-lg font-semibold text-emerald-700 mb-2">Target Participation</h4>
+                         <p class="text-3xl font-bold text-emerald-600">50+</p>
+                         <p class="text-stone-600">video uploads from teachers aimed for.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="implementation" class="tab-content">
+                <h2 class="text-2xl font-semibold text-sky-700 mb-4">Implementation Strategy</h2>
+                <p class="mb-6 text-stone-700">This section details the proposed strategy for implementing the AI coaching plan. It covers the phased approach to recordings, the coaching cycle, expected teacher participation, and key technical considerations for a smooth rollout.</p>
+                
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="text-xl font-semibold text-emerald-700 mb-3 detail-toggle flex justify-between items-center">
+                            <span>Phased Approach</span>
+                            <span class="text-sm text-sky-600">&#9660; Click to expand</span>
+                        </h3>
+                        <div class="detail-content ml-4 border-l-2 border-sky-200 pl-4 space-y-3">
+                            <div class="p-4 bg-stone-50 rounded-md shadow-sm">
+                                <h4 class="font-medium text-stone-800">Initial Recordings:</h4>
+                                <p class="text-stone-600">Math/Instructional Support Providers (MSPs) will initiate the recording process with teachers. This will help introduce the technology and process.</p>
+                            </div>
+                            <div class="p-4 bg-stone-50 rounded-md shadow-sm">
+                                <h4 class="font-medium text-stone-800">Teacher Recordings:</h4>
+                                <p class="text-stone-600">Following the initial MSP-led session, teachers will be encouraged to record themselves up to twice between each quarterly in-person coaching meeting. This aims for a manageable frequency, approximately once every two weeks.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-semibold text-emerald-700 mb-3 detail-toggle flex justify-between items-center">
+                            <span>Coaching Cycle</span>
+                            <span class="text-sm text-sky-600">&#9660; Click to expand</span>
+                        </h3>
+                        <div class="detail-content ml-4 border-l-2 border-sky-200 pl-4 space-y-3">
+                            <div class="p-4 bg-stone-50 rounded-md shadow-sm">
+                                <p class="text-stone-600"><strong class="text-stone-800">Quarterly Sessions:</strong> In-person coaching sessions will occur on a quarterly basis.</p>
+                            </div>
+                            <div class="p-4 bg-stone-50 rounded-md shadow-sm">
+                                <p class="text-stone-600"><strong class="text-stone-800">Supplementary Data:</strong> Teacher-uploaded recordings will supplement these in-person meetings, providing ongoing data for coaching conversations.</p>
+                            </div>
+                        </div>
+                    </div>
+                     <div>
+                        <h3 class="text-xl font-semibold text-emerald-700 mb-3 detail-toggle flex justify-between items-center">
+                            <span>Technical Considerations</span>
+                            <span class="text-sm text-sky-600">&#9660; Click to expand</span>
+                        </h3>
+                        <div class="detail-content ml-4 border-l-2 border-sky-200 pl-4 space-y-3">
+                             <div class="p-4 bg-stone-50 rounded-md shadow-sm">
+                                <p class="text-stone-600"><strong class="text-stone-800">Feedback Filtering:</strong> Explore filtering feedback visibility by email suffix if needed.</p>
+                            </div>
+                            <div class="p-4 bg-stone-50 rounded-md shadow-sm">
+                                <p class="text-stone-600"><strong class="text-stone-800">Metric Development:</strong> Acknowledge the ongoing development of metrics like talk time and the challenge of identifying transitions between instructional modes. Brockton may serve as a receptive environment for piloting prototypes of these features.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="feedback" class="tab-content">
+                <h2 class="text-2xl font-semibold text-sky-700 mb-4">Feedback Customization and Focus</h2>
+                <p class="mb-6 text-stone-700">This area describes how AI-generated feedback will be managed and tailored to Brockton's specific needs. It emphasizes control over feedback content, initial priority areas, and the importance of not overwhelming teachers.</p>
+                <div class="space-y-4">
+                    <div class="p-4 bg-emerald-50 border border-emerald-200 rounded-lg">
+                        <h4 class="font-medium text-emerald-800">Controlled Feedback:</h4>
+                        <p class="text-stone-600">The platform allows for control over what feedback is shared with teachers.</p>
+                    </div>
+                    <div class="p-4 bg-stone-50 rounded-lg shadow-sm">
+                        <h4 class="font-medium text-stone-800">Brockton's Priorities:</h4>
+                        <ul class="list-disc list-inside text-stone-600 mt-2 space-y-1">
+                            <li>Initially, focus feedback on areas like <strong>teacher talk time</strong> and <strong>wait time</strong>, as these are seen as potentially more impactful starting points than questioning.</li>
+                            <li>While Brockton has a previous focus on questioning, the plan will start with talk time and wait time, with the option to customize and potentially isolate feedback related to questioning later if desired.</li>
+                        </ul>
+                    </div>
+                    <div class="p-4 bg-stone-50 rounded-lg shadow-sm">
+                        <h4 class="font-medium text-stone-800">Avoiding Overwhelm:</h4>
+                        <p class="text-stone-600">The plan will prioritize meeting Brockton's specific needs and avoid overwhelming teachers with too much feedback.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="data_sharing" class="tab-content">
+                <h2 class="text-2xl font-semibold text-sky-700 mb-4">Data Sharing with Administrators</h2>
+                <p class="mb-6 text-stone-700">This section explains the plan for sharing insights derived from the AI coaching with school administrators. It highlights Brockton's receptiveness to data-driven approaches and potential areas of interest for administrators.</p>
+                <div class="space-y-4">
+                    <div class="p-4 bg-sky-50 border border-sky-200 rounded-lg">
+                         <p class="text-stone-700"><strong class="text-sky-800">Aggregated Insights:</strong> Aggregated data and insights from the AI coaching can be shared with school administrators.</p>
+                    </div>
+                     <div class="p-4 bg-stone-50 rounded-lg shadow-sm">
+                        <p class="text-stone-700"><strong class="text-stone-800">Data-Driven Culture:</strong> This aligns with Brockton's receptiveness to data-driven insights, partly due to state directives.</p>
+                    </div>
+                    <div class="p-4 bg-stone-50 rounded-lg shadow-sm">
+                        <p class="text-stone-700"><strong class="text-stone-800">Admin Interests:</strong> Data regarding time spent on independent work may also be of interest to administrators.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="next_steps" class="tab-content">
+                <h2 class="text-2xl font-semibold text-sky-700 mb-4">Next Steps & Timeline</h2>
+                <p class="mb-6 text-stone-700">This outlines the immediate actions required to move the plan forward, including reviews, meetings, and funding discussions. A visual representation of key milestones and their (hypothetical) progress is also included.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-4">
+                        <h3 class="text-xl font-semibold text-emerald-700 mb-2">Action Items:</h3>
+                        <ol class="list-decimal list-inside text-stone-700 space-y-2">
+                            <li><strong>Draft Plan Review:</strong> Steven Mendoza will share this drafted plan with Sue Hamilton and Abby for feedback.</li>
+                            <li><strong>Meeting with Abby:</strong> Schedule a meeting with Abby to discuss the plan, particularly the funding aspect for virtual coaching. Sue Hamilton will be included in this meeting invitation.</li>
+                            <li><strong>Internal Discussion (Sue):</strong> Sue Hamilton may discuss the general idea with Candy on Tuesday.</li>
+                            <li><strong>Finalize Plan:</strong> Incorporate feedback and finalize the plan for implementation in the fall.</li>
+                        </ol>
+                         <div class="mt-4 p-4 bg-sky-50 border border-sky-200 rounded-lg">
+                            <h4 class="font-medium text-sky-800">Virtual Follow-Up & Funding:</h4>
+                            <ul class="list-disc list-inside text-stone-600 mt-2 space-y-1">
+                                <li>Explore the possibility of virtual follow-up coaching sessions to supplement in-person meetings.</li>
+                                <li>The potential need for funding for these virtual sessions will be discussed with Abby (research contact). Sue Hamilton will be included in these discussions.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-emerald-700 mb-3">Key Milestones Progress (Illustrative)</h3>
+                        <div class="chart-container bg-stone-50 p-4 rounded-lg shadow-sm">
+                            <canvas id="milestonesChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const targetTab = button.dataset.tab;
+
+                tabButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    btn.setAttribute('aria-selected', 'false');
+                });
+                button.classList.add('active');
+                button.setAttribute('aria-selected', 'true');
+
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                    if (content.id === targetTab) {
+                        content.classList.add('active');
+                    }
+                });
+            });
+        });
+
+        const detailToggles = document.querySelectorAll('.detail-toggle');
+        detailToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const content = toggle.nextElementSibling;
+                content.classList.toggle('open');
+                const arrow = toggle.querySelector('span:last-child');
+                if (content.classList.contains('open')) {
+                    arrow.innerHTML = '&#9650; Click to collapse';
+                } else {
+                    arrow.innerHTML = '&#9660; Click to expand';
+                }
+            });
+             // Open by default for demonstration
+            const content = toggle.nextElementSibling;
+            if (content) { // ensure content exists
+                content.classList.add('open');
+                 const arrow = toggle.querySelector('span:last-child');
+                 if (arrow) arrow.innerHTML = '&#9650; Click to collapse';
+            }
+
+        });
+
+        // Chart.js - Milestones Chart
+        const milestonesCtx = document.getElementById('milestonesChart');
+        if (milestonesCtx) {
+            new Chart(milestonesCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Plan Review', 'Abby Meeting', 'Internal Discussion', 'Finalize Plan', 'Fall Rollout Prep'],
+                    datasets: [{
+                        label: 'Progress (%)',
+                        data: [60, 20, 10, 0, 0], // Illustrative data
+                        backgroundColor: [
+                            'rgba(56, 189, 248, 0.6)', // sky-400
+                            'rgba(16, 185, 129, 0.6)', // emerald-500
+                            'rgba(245, 158, 11, 0.6)', // amber-500
+                            'rgba(239, 68, 68, 0.6)',   // red-500
+                            'rgba(124, 58, 237, 0.6)' // violet-500
+                        ],
+                        borderColor: [
+                            'rgba(56, 189, 248, 1)',
+                            'rgba(16, 185, 129, 1)',
+                            'rgba(245, 158, 11, 1)',
+                            'rgba(239, 68, 68, 1)',
+                            'rgba(124, 58, 237, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + "%"
+                                }
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                callback: function(value, index, values) {
+                                    const label = this.getLabelForValue(value);
+                                    if (label.length > 16) {
+                                        return label.substring(0, 15) + '...';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + context.parsed.y + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
